@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export function PropertyCard({ property, large = false }) {
   return (
     <article className={`property-card ${large ? "property-card--large" : ""}`} data-reveal>
-      <Link to={`/rentals/${property.slug}`} className="property-card__media">
+      <Link to={`/rentals/${property.slug}`} className="property-card__media" data-cursor="View">
         <img src={property.image} alt={property.name} data-parallax />
       </Link>
 
