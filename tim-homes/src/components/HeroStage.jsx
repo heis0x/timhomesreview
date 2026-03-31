@@ -1,37 +1,12 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
-const HERO_VIDEO_SRC =
-  "https://www.studiodado.com/wp-content/uploads/2025/09/Regent-Suite-2-Animation-1.mp4";
+const HERO_VIDEO_SRC = "https://assets.mixkit.co/videos/4029/4029-720.mp4";
 const HERO_POSTER =
-  "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1800&q=80";
+  "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&w=1920&q=80";
 
 export function HeroStage({ title, statement }) {
   const rootRef = useRef(null);
-  const videoRef = useRef(null);
-  const titleRef = useRef(null);
-  const toplineRef = useRef(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const onCanPlay = () => {
-      video.classList.add("hero-stage__video--active");
-    };
-
-    video.addEventListener("canplay", onCanPlay, { once: true });
-
-    // Fallback: show after 600ms even if not ready
-    const fallback = setTimeout(() => {
-      video.classList.add("hero-stage__video--active");
-    }, 600);
-
-    return () => {
-      video.removeEventListener("canplay", onCanPlay);
-      clearTimeout(fallback);
-    };
-  }, []);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -72,7 +47,6 @@ export function HeroStage({ title, statement }) {
     <section className="hero-stage" ref={rootRef}>
       <div className="hero-stage__media" aria-hidden="true">
         <video
-          ref={videoRef}
           className="hero-stage__video"
           src={HERO_VIDEO_SRC}
           poster={HERO_POSTER}
@@ -101,7 +75,7 @@ export function HeroStage({ title, statement }) {
             </div>
           </div>
 
-          <h1 className="hero-stage__title" data-reveal-words ref={titleRef}>
+          <h1 className="hero-stage__title" data-reveal-words>
             {titleWords.map((word) => (
               <span key={word} className="hero-stage__title-line">
                 <span className="hero-stage__split-word">{word}</span>

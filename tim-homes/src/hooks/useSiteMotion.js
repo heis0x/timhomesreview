@@ -27,14 +27,15 @@ export function useSiteMotion() {
     ScrollTrigger.refresh();
 
     const ctx = gsap.context(() => {
+      // Clip-path wipe from bottom — matches DADO's line-mask reveal pattern
       gsap.utils.toArray("[data-reveal]").forEach((el) => {
         gsap.fromTo(
           el,
-          { y: 48, opacity: 0 },
+          { clipPath: "inset(0 0 100% 0)", y: 20 },
           {
+            clipPath: "inset(0 0 0% 0)",
             y: 0,
-            opacity: 1,
-            duration: 1.1,
+            duration: 1.15,
             ease: "power3.out",
             scrollTrigger: {
               trigger: el,
@@ -171,6 +172,20 @@ export function useSiteMotion() {
             },
           },
         );
+      }
+
+      const footer = document.querySelector(".site-footer");
+      if (footer) {
+        gsap.from(footer, {
+          y: 48,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: footer,
+            start: "top 95%",
+            end: "top 60%",
+            scrub: 0.8,
+          },
+        });
       }
     });
 

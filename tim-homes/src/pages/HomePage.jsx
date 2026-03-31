@@ -35,11 +35,12 @@ export function HomePage() {
           </h2>
           <div className="statement-section__figure">
             <video
-              src="https://www.studiodado.com/wp-content/uploads/2025/09/Regent-Suite-2-Animation-1.mp4"
+              src="https://assets.mixkit.co/videos/4029/4029-1080.mp4"
               autoPlay
               muted
               loop
               playsInline
+              preload="none"
               data-parallax
             />
           </div>
